@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LT.Combate - Soluções completas em Engenharia de Incêndio, AVCB e Controle de Pragas em São Paulo e Osasco.">
+    <title>LT.Combate | Engenharia & Controle de Pragas</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            darkRed: '#7C312F',
+                            fireRed: '#E23338',
+                            black: '#373435', 
+                            gray: '#F1F1F2',
+                            lightBg: '#F9FAFB',
+                            cardBg: '#FFFFFF',
+                            whatsapp: '#25D366'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop')",
+                        'dot-pattern': "url('https://www.transparenttextures.com/patterns/stardust.png')",
+                        'grid-pattern': "linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)"
+                    },
+                    backgroundSize: {
+                        'grid-size': '40px 40px'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html, body {
+            overflow-x: hidden; /* Correção crítica para evitar scroll lateral da página */
+            width: 100%;
+            max-width: 100%;
+            background-color: #F9FAFB;
+            color: #373435;
+        }
+
+        .bg-tech-grid {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 51, 56, 0.1); 
+        }
+
+        .glass-card {
+            background: #FFFFFF;
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(226, 51, 56, 0.05); 
+            position: relative;
+            overflow: hidden;
+            flex: 0 0 auto; 
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                width: 260px;
+            }
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, #E23338, #7C312F);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px -15px rgba(226, 51, 56, 0.15);
+            border-color: rgba(226, 51, 56, 0.2);
+        }
+        
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.5;
+            animation: float 15s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; transform: translateY(-5px)} 100% {opacity: 1; transform: translateY(0)} }
+        
+        .badge-pulse {
+            box-shadow: 0 0 0 0 rgba(226, 51, 56, 0.7);
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(226, 51, 56, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(226, 51, 56, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(226, 51, 56, 0); }
+        }
+
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-green 2s infinite;
+            transition: all 0.3s ease;
+        }
+        .float-wa:hover { transform: scale(1.1); background-color: #1ebc57; }
+        
+        .float-top {
+            position: fixed;
+            width: 45px;
+            height: 45px;
+            bottom: 30px;
+            right: 100px;
+            background-color: #373435;
+            color: #FFF;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .float-top.visible { opacity: 1; pointer-events: auto; }
+        .float-top:hover { background-color: #E23338; transform: translateY(-3px); }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        #cookie-banner {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1.5rem;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: bottom 0.5s ease-in-out;
+            border-top: 4px solid #E23338;
+        }
+        #cookie-banner.show { bottom: 0; }
+    </style>
+</head>
+<body class="antialiased font-sans bg-tech-grid relative">
+
+    <a href="https://wa.me/5511989410486?text=Olá, vim pelo site e gostaria de um atendimento." target="_blank" class="float-wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="#home" class="float-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <div class="blob bg-red-100 w-[600px] h-[600px] rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2 mix-blend-multiply"></div>
+    <div class="blob bg-gray-200 w-[500px] h-[500px] rounded-full bottom-0 right-0 translate-x-1/2 translate-y-1/2 mix-blend-multiply"></div>
+    <div class="blob bg-red-50 w-96 h-96 rounded-full top-1/2 left-1/4 -translate-y-1/2 mix-blend-multiply"></div>
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass-panel">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group relative z-50">
+                <img src="https://i.ibb.co/nsjzN7QX/ltclogo.png" alt="LT.Combate" class="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8 font-bold text-sm tracking-wide text-brand-black">
+                <a href="#home" class="nav-link hover:text-brand-fireRed transition py-2">INÍCIO</a>
+                <a href="#incendio" class="nav-link hover:text-brand-fireRed transition py-2">INCÊNDIO</a>
+                <a href="#pragas" class="nav-link hover:text-brand-fireRed transition py-2">PRAGAS</a>
+                <a href="#faq" class="nav-link hover:text-brand-fireRed transition py-2">AJUDA</a>
+                <a href="https://wa.me/5511989410486?text=Olá, gostaria de solicitar um orçamento." target="_blank" class="group px-6 py-2.5 bg-brand-fireRed text-white rounded-lg hover:bg-red-700 transition-all shadow-lg shadow-red-200 flex items-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-lg"></i> 
+                    <span>ORÇAMENTO</span>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-black focus:outline-none hover:text-brand-fireRed transition relative z-50">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center space-y-8 md:hidden text-brand-black">
+            <button id="close-menu-btn" class="absolute top-6 right-6 text-brand-black text-3xl hover:text-brand-fireRed p-2">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home" class="text-2xl font-bold hover:text-brand-fireRed tracking-tight">INÍCIO</a>
+            <a href="#incendio" class="text-2xl font-bold hover:text-brand-fireRed tracking-tight">INCÊNDIO</a>
+            <a href="#pragas" class="text-2xl font-bold hover:text-brand-fireRed tracking-tight">PRAGAS</a>
+            <a href="#contato" class="text-2xl font-bold hover:text-brand-fireRed tracking-tight">CONTATO</a>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-fixed"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/40"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center h-full py-20">
+            <div class="space-y-8 fade-in-up max-w-2xl">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-red-50 border border-red-100 text-brand-fireRed text-xs font-bold tracking-wider uppercase shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-fireRed badge-pulse"></span>
+                    Atendimento em Toda SP e Grande SP
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-black leading-[1.1] text-brand-black tracking-tight drop-shadow-sm">
+                    SEGURANÇA <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-fireRed to-brand-darkRed">CERTIFICADA</span>
+                    <br>PARA VOCÊ.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 font-medium leading-relaxed border-l-4 border-brand-fireRed pl-6">
+                    A LT.Combate é líder em soluções completas. Regularização, Projetos e Controle de Pragas com excelência técnica.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="#incendio" class="group p-4 bg-white/80 backdrop-blur border border-gray-200 rounded-xl hover:border-brand-fireRed hover:shadow-lg transition-all text-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-fire-extinguisher text-3xl text-brand-fireRed mb-2 block group-hover:scale-110 transition-transform relative z-10"></i>
+                        <span class="font-bold text-brand-black text-sm relative z-10">Engenharia de Incêndio</span>
+                    </a>
+                    <a href="#pragas" class="group p-4 bg-white/80 backdrop-blur border border-gray-200 rounded-xl hover:border-brand-fireRed hover:shadow-lg transition-all text-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="fas fa-spider text-3xl text-brand-black mb-2 block group-hover:scale-110 transition-transform relative z-10"></i>
+                        <span class="font-bold text-brand-black text-sm relative z-10">Controle de Pragas</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap gap-6 py-4 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="flex items-center gap-2" title="Certificado Corpo de Bombeiros"><i class="fas fa-fire-extinguisher text-3xl text-brand-black"></i><span class="text-xs font-bold text-gray-500 uppercase">Bombeiros<br>Certificado</span></div>
+                    <div class="border-l border-gray-300 h-8 my-auto"></div>
+                    <div class="flex items-center gap-2" title="Regulamentado ANVISA"><i class="fas fa-shield-virus text-3xl text-brand-black"></i><span class="text-xs font-bold text-gray-500 uppercase">ANVISA<br>Regularizado</span></div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:block relative fade-in-up delay-200 h-full min-h-[500px]">
+                <div class="absolute top-10 right-10 w-80 bg-white/90 backdrop-blur p-6 rounded-2xl shadow-2xl border border-red-100 z-20 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-brand-fireRed"><i class="fas fa-file-contract text-xl"></i></div>
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">Aprovado</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-brand-black mb-1">Emissão de AVCB/CLCB</h3>
+                    <p class="text-sm text-gray-500 mb-4">Regularização 100% conforme normas vigentes.</p>
+                    <div class="w-full bg-gray-100 rounded-full h-1.5 mb-2"><div class="bg-brand-fireRed h-1.5 rounded-full" style="width: 100%"></div></div>
+                    <div class="text-right text-xs font-bold text-brand-fireRed">Processo Concluído</div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-gray-100 to-white rounded-full opacity-50 blur-3xl -z-10 transform scale-90"></div>
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" alt="Documentação" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 opacity-10 grayscale">
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-gray-50 border-y border-gray-200 py-10 overflow-hidden relative">
+        <div class="absolute inset-0 bg-dot-pattern opacity-10"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <p class="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Empresas que confiam na nossa segurança</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+                <i class="fab fa-aws text-4xl hover:text-brand-fireRed transition-colors" title="Parceiro Industrial"></i>
+                <i class="fab fa-dhl text-4xl hover:text-brand-fireRed transition-colors" title="Logística Segura"></i>
+                <i class="fab fa-airbnb text-4xl hover:text-brand-fireRed transition-colors" title="Condomínios"></i>
+                <i class="fab fa-uber text-4xl hover:text-brand-fireRed transition-colors" title="Frota Veicular"></i>
+                <i class="fas fa-building text-4xl hover:text-brand-fireRed transition-colors" title="Administradoras"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="incendio" class="relative pt-10">
+        <div class="absolute inset-0 bg-gradient-to-b from-white to-red-50/30 -z-10"></div>
+        
+        <div class="container mx-auto px-6 mb-10">
+            <div class="flex items-center gap-4 py-8 border-b-2 border-brand-fireRed/20">
+                <div class="p-3 bg-brand-fireRed rounded-lg text-white text-2xl shadow-lg shadow-red-200"><i class="fas fa-fire-extinguisher"></i></div>
+                <div>
+                    <h2 class="text-2xl font-black text-brand-black uppercase tracking-wider">Departamento de Incêndio</h2>
+                    <p class="text-sm text-gray-500">Regularização, Projetos e Equipamentos</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-24 relative bg-fixed bg-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+            <div class="absolute inset-0 bg-brand-black/80 mix-blend-multiply"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-black/90 via-brand-black/60 to-transparent"></div>
+            
+            <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl md:text-5xl font-display font-black text-white mb-6 leading-tight">SUA EMPRESA ESTÁ <span class="text-brand-fireRed">REGULARIZADA?</span></h2>
+                    <p class="text-gray-300 text-lg mb-8 font-medium">
+                        Não corra riscos. A falta de Alvarás e AVCB pode gerar multas pesadas e interdição do seu negócio.
+                    </p>
+                    <div class="flex flex-wrap gap-8" id="stats-container">
+                        <div class="text-center md:text-left">
+                            <span class="block text-4xl font-black text-brand-fireRed counter-value" data-target="10">0</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-wider font-bold">Anos de XP</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <span class="block text-4xl font-black text-brand-fireRed counter-value" data-target="5000">0</span>
+                            <span class="text-xs text-gray-400 uppercase tracking-wider font-bold">Projetos</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <div class="flex items-center text-4xl font-black text-brand-fireRed">
+                                <span class="counter-value" data-target="100">0</span>%
+                            </div>
+                            <span class="text-xs text-gray-400 uppercase tracking-wider font-bold">Aprovação</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Botão responsivo: tamanhos ajustados para mobile -->
+                    <a href="https://wa.me/5511989410486?text=Preciso regularizar minha empresa." target="_blank" class="group inline-flex items-center gap-4 px-6 py-3 text-base md:px-10 md:py-5 md:text-xl bg-white text-brand-black font-bold rounded-full hover:bg-brand-fireRed hover:text-white transition-all transform hover:scale-105 shadow-2xl border-4 border-transparent hover:border-white/20">
+                        <span>FALAR COM ESPECIALISTA</span>
+                        <i class="fas fa-comment-alt group-hover:rotate-12 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 relative z-20">
+            <div class="absolute inset-0 bg-dot-pattern opacity-50 pointer-events-none"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 fade-in-up">
+                    <div>
+                        <h2 class="text-brand-fireRed font-bold tracking-widest uppercase text-sm mb-2">Loja Online</h2>
+                        <h3 class="text-4xl md:text-5xl font-display font-black text-brand-black">EQUIPAMENTOS & <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-fireRed to-red-600">SERVIÇOS</span></h3>
+                    </div>
+                    <div class="flex gap-2"><span class="text-sm text-gray-400">Arraste para o lado <i class="fas fa-arrow-right ml-1"></i></span></div>
+                </div>
+
+                <div class="mb-20 fade-in-up">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-2xl font-display font-bold text-brand-black flex items-center gap-3">
+                            <span class="w-2 h-8 bg-brand-fireRed rounded-full"></span>Documentação & Serviços
+                        </h3>
+                        <div class="flex gap-2">
+                            <!-- Ajuste no scroll amount para 324px (300px card + 24px gap) -->
+                            <button onclick="scrollContainer('cat1', -324)" class="w-10 h-10 rounded-full bg-white shadow hover:bg-gray-100 flex items-center justify-center text-brand-black transition"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="scrollContainer('cat1', 324)" class="w-10 h-10 rounded-full bg-white shadow hover:bg-gray-100 flex items-center justify-center text-brand-black transition"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div id="cat1" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide scroll-smooth px-2">
+                        <div class="glass-card p-6 rounded-2xl flex flex-col group snap-start shrink-0">
+                            <div class="h-48 bg-gray-50 rounded-xl mb-6 flex items-center justify-center p-6 relative group-hover:bg-red-50 transition-colors"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" alt="AVCB" class="h-28 object-contain group-hover:scale-110 transition"></div>
+                            <h4 class="text-xl font-bold text-brand-black mb-2">AVCB - Vistoria Bombeiros</h4>
+                            <p class="text-gray-500 text-sm mb-6 flex-grow">Laudo obrigatório para edificações. Inclui visita.</p>
+                            <div class="mt-auto pt-6 border-t border-gray-100">
+                                <div class="flex justify-between items-end mb-4"><span class="text-xs text-gray-400 font-bold uppercase">A partir de</span><span class="text-2xl font-display font-black text-brand-fireRed">R$ 1.949</span></div>
+                                <a href="https://wa.me/5511989410486?text=Interesse no AVCB." target="_blank" class="w-full py-3 bg-brand-whatsapp/10 hover:bg-brand-whatsapp text-brand-whatsapp hover:text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all"><i class="fab fa-whatsapp"></i> COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl flex flex-col group snap-start shrink-0">
+                            <div class="h-48 bg-gray-50 rounded-xl mb-6 flex items-center justify-center p-6 relative group-hover:bg-red-50 transition-colors"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" alt="CLCB" class="h-28 object-contain group-hover:scale-110 transition"></div>
+                            <h4 class="text-xl font-bold text-brand-black mb-2">CLCB - Licença Simplificada</h4>
+                            <p class="text-gray-500 text-sm mb-6 flex-grow">Para imóveis com baixo risco (até 750m²).</p>
+                            <div class="mt-auto pt-6 border-t border-gray-100">
+                                <div class="flex justify-between items-end mb-4"><span class="text-xs text-gray-400 font-bold uppercase">A partir de</span><span class="text-2xl font-display font-black text-brand-fireRed">R$ 949,90</span></div>
+                                <a href="https://wa.me/5511989410486?text=Interesse no CLCB." target="_blank" class="w-full py-3 bg-brand-whatsapp/10 hover:bg-brand-whatsapp text-brand-whatsapp hover:text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all"><i class="fab fa-whatsapp"></i> COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl flex flex-col group snap-start shrink-0">
+                            <div class="h-48 bg-gray-50 rounded-xl mb-6 flex items-center justify-center p-6 relative group-hover:bg-red-50 transition-colors"><img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Curso" class="h-28 object-contain group-hover:scale-110 transition"></div>
+                            <h4 class="text-xl font-bold text-brand-black mb-2">Treinamento de Brigada</h4>
+                            <p class="text-gray-500 text-sm mb-6 flex-grow">Capacitação teórica e prática para funcionários.</p>
+                            <div class="mt-auto pt-6 border-t border-gray-100">
+                                <div class="flex justify-between items-end mb-4"><span class="text-xs text-gray-400 font-bold uppercase">Por Turma</span><span class="text-2xl font-display font-black text-brand-fireRed">R$ 800,00</span></div>
+                                <a href="https://wa.me/5511989410486?text=Interesse no Curso Brigadista." target="_blank" class="w-full py-3 bg-brand-whatsapp/10 hover:bg-brand-whatsapp text-brand-whatsapp hover:text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all"><i class="fab fa-whatsapp"></i> COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl flex flex-col group snap-start shrink-0">
+                            <div class="h-48 bg-gray-50 rounded-xl mb-6 flex items-center justify-center p-6 relative group-hover:bg-red-50 transition-colors"><img src="https://cdn-icons-png.flaticon.com/512/1163/1163276.png" alt="Kit Teste" class="h-28 object-contain group-hover:scale-110 transition"></div>
+                            <h4 class="text-xl font-bold text-brand-black mb-2">Kit Teste Preventivo</h4>
+                            <p class="text-gray-500 text-sm mb-6 flex-grow">Teste de Central de Alarme e Bomba.</p>
+                            <div class="mt-auto pt-6 border-t border-gray-100">
+                                <div class="flex justify-between items-end mb-4"><span class="text-xs text-gray-400 font-bold uppercase">Serviço</span><span class="text-2xl font-display font-black text-brand-fireRed">R$ 1.500</span></div>
+                                <a href="https://wa.me/5511989410486?text=Interesse no Kit Teste Preventivo." target="_blank" class="w-full py-3 bg-brand-whatsapp/10 hover:bg-brand-whatsapp text-brand-whatsapp hover:text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all"><i class="fab fa-whatsapp"></i> COMPRAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-up">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-2xl font-display font-bold text-brand-black flex items-center gap-3">
+                            <span class="w-2 h-8 bg-brand-fireRed rounded-full"></span>Equipamentos & Acessórios
+                        </h3>
+                        <div class="flex gap-2">
+                            <!-- Ajuste no scroll amount para 324px -->
+                            <button onclick="scrollContainer('cat2', -324)" class="w-10 h-10 rounded-full bg-white shadow hover:bg-gray-100 flex items-center justify-center text-brand-black transition"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="scrollContainer('cat2', 324)" class="w-10 h-10 rounded-full bg-white shadow hover:bg-gray-100 flex items-center justify-center text-brand-black transition"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div id="cat2" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-hide scroll-smooth px-2">
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all border-l-4 border-l-brand-fireRed snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><div class="absolute top-2 right-2 text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded font-bold">KIT</div><img src="https://cdn-icons-png.flaticon.com/512/2492/2492923.png" alt="Kit" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Kit Hidrante Completo</h4>
+                            <p class="text-xs text-gray-400 mb-4">Mangueira 15m + Acessórios.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 640,90</span><a href="https://wa.me/5511989410486?text=Kit Hidrante" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/926/926344.png" alt="Extintor" class="h-24 object-contain grayscale group-hover:grayscale-0 transition duration-300"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Extintor Água 10L</h4>
+                            <p class="text-xs text-gray-400 mb-4">Classe A. Papel e Madeira.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 196,00</span><a href="https://wa.me/5511989410486?text=Extintor Agua" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/926/926344.png" alt="Extintor" class="h-24 object-contain grayscale group-hover:grayscale-0 transition duration-300"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Extintor Pó BC 4kg</h4>
+                            <p class="text-xs text-gray-400 mb-4">Líquidos e Elétrica.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 166,00</span><a href="https://wa.me/5511989410486?text=Extintor Po" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><i class="fas fa-hand-pointer text-6xl text-red-500"></i></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Botoeira de Alarme</h4>
+                            <p class="text-xs text-gray-400 mb-4">Acionador manual tipo quebra-vidro.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-sm font-bold text-gray-500">Consulte</span><a href="https://wa.me/5511989410486?text=Botoeira" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><i class="fas fa-faucet text-6xl text-yellow-600"></i></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Registro Globo</h4>
+                            <p class="text-xs text-gray-400 mb-4">Válvula angular para hidrantes.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-sm font-bold text-gray-500">Consulte</span><a href="https://wa.me/5511989410486?text=Registro Globo" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><i class="fas fa-square text-6xl text-red-700"></i></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Abrigo de Mangueira</h4>
+                            <p class="text-xs text-gray-400 mb-4">Caixa metálica para hidrante.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-sm font-bold text-gray-500">Consulte</span><a href="https://wa.me/5511989410486?text=Abrigo Mangueira" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/743/743007.png" alt="Extintor Carro" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Extintor Veicular</h4>
+                            <p class="text-xs text-gray-400 mb-4">Para carros. Segurança veicular.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 109,90</span><a href="https://wa.me/5511989410486?text=Extintor Veicular" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/9038/9038058.png" alt="Esguicho" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Esguicho Regulável</h4>
+                            <p class="text-xs text-gray-400 mb-4">Latão. Alta durabilidade.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 175,00</span><a href="https://wa.me/5511989410486?text=Esguicho" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/9038/9038058.png" alt="Esguicho" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Esguicho Jato Sólido</h4>
+                            <p class="text-xs text-gray-400 mb-4">Misto. Conforme NBR.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 98,00</span><a href="https://wa.me/5511989410486?text=Esguicho Solido" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/2554/2554936.png" alt="Adaptador" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Adaptador 1 1/2</h4>
+                            <p class="text-xs text-gray-400 mb-4">Latão. Segurança p/ hidrante.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 89,00</span><a href="https://wa.me/5511989410486?text=Adaptador" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/1000/1000959.png" alt="Chave" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Chave Storz</h4>
+                            <p class="text-xs text-gray-400 mb-4">Garantia de integridade.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 18,90</span><a href="https://wa.me/5511989410486?text=Chave Storz" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl flex flex-col group hover:shadow-xl transition-all snap-start shrink-0">
+                            <div class="h-40 bg-white rounded-lg mb-4 flex items-center justify-center p-2"><img src="https://cdn-icons-png.flaticon.com/512/3600/3600966.png" alt="Luz" class="h-24 object-contain"></div>
+                            <h4 class="text-lg font-bold text-brand-black mb-1">Bloco Autônomo LED</h4>
+                            <p class="text-xs text-gray-400 mb-4">Luz de emergência.</p>
+                            <div class="mt-auto flex justify-between items-center"><span class="text-xl font-black text-brand-black">R$ 19,90</span><a href="https://wa.me/5511989410486?text=Luz Emergencia" target="_blank" class="w-10 h-10 rounded-full bg-brand-lightBg flex items-center justify-center text-brand-whatsapp hover:bg-brand-whatsapp hover:text-white transition-colors"><i class="fas fa-shopping-cart"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="pragas" class="bg-gray-50 pt-10 relative overflow-hidden">
+        <div class="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none"></div>
+        <div class="container mx-auto px-6 mb-10 relative z-10">
+            <div class="flex items-center gap-4 py-8 border-b-2 border-green-200">
+                <div class="p-3 bg-brand-black rounded-lg text-white text-2xl shadow-lg shadow-gray-400"><i class="fas fa-spider"></i></div>
+                <div>
+                    <h2 class="text-2xl font-black text-brand-black uppercase tracking-wider">Departamento de Pragas</h2>
+                    <p class="text-sm text-gray-500">Dedetização, Desratização e Sanitização</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-24 relative z-20">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-gray-200 to-transparent skew-x-12 opacity-30"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="fade-in-up">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold tracking-widest uppercase mb-6"><i class="fas fa-leaf"></i> Ambiente Seguro</div>
+                        <h2 class="text-4xl md:text-5xl font-display font-black text-brand-black mb-6 leading-tight">LIVRE-SE DAS <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-fireRed to-red-600">PRAGAS URBANAS</span></h2>
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed">Utilizamos métodos avançados e produtos de <strong>baixa toxicidade</strong>, garantindo a eliminação dos vetores sem colocar sua família ou seus animais de estimação em risco.</p>
+                        <!-- Grid responsivo ajustado: 1 coluna no mobile, 2 no desktop -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                            <div class="flex items-start gap-4 p-4 bg-white/90 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-black shrink-0"><i class="fas fa-bug"></i></div>
+                                <div><h4 class="font-bold text-brand-black">Desinsetização</h4><p class="text-xs text-gray-500">Gel e pulverização contra baratas e formigas.</p></div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-white/90 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-black shrink-0"><i class="fas fa-otter"></i></div>
+                                <div><h4 class="font-bold text-brand-black">Desratização</h4><p class="text-xs text-gray-500">Iscas seguras para eliminação de roedores.</p></div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-white/90 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-black shrink-0"><i class="fas fa-align-justify"></i></div>
+                                <div><h4 class="font-bold text-brand-black">Descupinização</h4><p class="text-xs text-gray-500">Barreira química e tratamento de madeira.</p></div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-white/90 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-black shrink-0"><i class="fas fa-dove"></i></div>
+                                <div><h4 class="font-bold text-brand-black">Controle de Pombos</h4><p class="text-xs text-gray-500">Barreiras físicas e repelentes.</p></div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 bg-white/90 backdrop-blur rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-black shrink-0"><i class="fas fa-tint"></i></div>
+                                <div><h4 class="font-bold text-brand-black">Limpeza Cx. D'Água</h4><p class="text-xs text-gray-500">Higienização e desinfecção completa.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative fade-in-up delay-100">
+                        <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:scale-[1.02] transition-transform duration-500">
+                            <!-- Image replaced here -->
+                            <img src="https://plus.unsplash.com/premium_photo-1661306479139-2ba81f1a5cd6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profissional Dedetização" class="w-full h-auto object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-black/90 to-transparent p-8 pt-24 text-white">
+                                <h3 class="text-2xl font-bold mb-2">Tecnologia de Aplicação</h3>
+                                <p class="text-sm opacity-90">Microaspersão, Gel e Iscas Parafinadas de última geração.</p>
+                            </div>
+                        </div>
+                        <div class="absolute -top-10 -right-10 w-full h-full border-2 border-brand-fireRed/20 rounded-3xl -z-10"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-fireRed/10 rounded-full blur-3xl -z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="faq" class="py-24 bg-white relative z-20">
+        <!-- ... (faq content unchanged) -->
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-brand-fireRed font-bold tracking-widest uppercase text-sm mb-2">Suporte</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-black text-brand-black">DÚVIDAS <span class="text-gray-400">COMUNS</span></h3>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <details class="group bg-gray-50 rounded-2xl p-2 cursor-pointer fade-in-up">
+                    <summary class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm group-hover:shadow-md transition-all border border-gray-100">
+                        <h4 class="font-bold text-brand-black">Quanto tempo vale o AVCB?</h4>
+                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 group-open:bg-brand-fireRed group-open:text-white transition-colors"><i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i></span>
+                    </summary>
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        A validade varia de 1 a 5 anos, dependendo da ocupação e risco do imóvel. Edificações residenciais costumam ter prazos maiores que comércios e indústrias.
+                    </div>
+                </details>
+                <details class="group bg-gray-50 rounded-2xl p-2 cursor-pointer fade-in-up delay-75">
+                    <summary class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm group-hover:shadow-md transition-all border border-gray-100">
+                        <h4 class="font-bold text-brand-black">A dedetização tem cheiro?</h4>
+                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 group-open:bg-brand-fireRed group-open:text-white transition-colors"><i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i></span>
+                    </summary>
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        A maioria dos nossos produtos (como gel e iscas) não possui cheiro. Em casos de pulverização, recomendamos um período curto de afastamento, mas utilizamos fórmulas modernas de baixo odor.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-24 bg-gray-50 relative z-20">
+        <!-- ... (contact content unchanged) -->
+        <div class="absolute inset-0 bg-tech-grid opacity-10"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-brand-fireRed font-bold tracking-widest uppercase text-sm mb-2">Fale Conosco</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-black text-brand-black">ONDE <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-fireRed to-red-600">ESTAMOS</span></h3>
+                <div class="w-24 h-1 bg-brand-fireRed mx-auto mt-6 rounded-full"></div>
+            </div>
+            <div class="glass-card !w-full rounded-3xl p-4 md:p-8 shadow-xl overflow-hidden border border-gray-200 w-full">
+                <div class="grid lg:grid-cols-2 gap-0">
+                    <div class="p-8 md:p-12 flex flex-col justify-center bg-white">
+                        <h4 class="text-2xl font-bold text-brand-black mb-6">Nossas Unidades</h4>
+                        
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center text-brand-fireRed text-2xl group-hover:bg-brand-fireRed group-hover:text-white transition-colors shadow-sm"><i class="fas fa-briefcase"></i></div>
+                                <div>
+                                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Escritório Comercial</p>
+                                    <p class="text-brand-black font-medium text-lg leading-snug">Rua João de Deus, 455 - Bela Vista<br>Osasco - SP, 06060-210</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center text-brand-fireRed text-2xl group-hover:bg-brand-fireRed group-hover:text-white transition-colors shadow-sm"><i class="fas fa-truck"></i></div>
+                                <div>
+                                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Base Operacional</p>
+                                    <p class="text-brand-black font-medium text-lg leading-snug">Estrada do Jacarandá, 2250<br>Altos de Santa Lúcia - SP, 06361-400</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-5 group">
+                                <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center text-brand-fireRed text-2xl group-hover:bg-brand-fireRed group-hover:text-white transition-colors shadow-sm"><i class="fas fa-phone-alt"></i></div>
+                                <div>
+                                    <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Atendimento</p>
+                                    <div class="flex flex-col">
+                                        <a href="tel:+5511989410486" class="text-brand-black font-bold text-xl hover:text-brand-fireRed transition">(11) 98941-0486</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-12 pt-8 border-t border-gray-100">
+                            <a href="https://wa.me/5511989410486" target="_blank" class="w-full py-4 bg-brand-whatsapp hover:bg-green-600 text-white font-bold rounded-xl flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-green-200 transform hover:-translate-y-1">
+                                <i class="fab fa-whatsapp text-2xl"></i><span>INICIAR CONVERSA AGORA</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="h-full min-h-[400px] w-full bg-gray-100 relative">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.106516807498!2d-46.7725992!3d-23.5286591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ceff5612345678%3A0x123456789abcdef!2sRua+Jo%C3%A3o+de+Deus%2C+455+-+Bela+Vista%2C+Osasco+-+SP!5e0!3m2!1spt-BR!2sbr!4v1626287664402!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0; filter: grayscale(20%) contrast(1.2) opacity(0.9);" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="absolute bottom-6 right-6 bg-white px-4 py-2 rounded-lg shadow-lg text-xs font-bold text-brand-black flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-brand-whatsapp animate-pulse"></span> Aberto Agora
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-black text-white pt-16 pb-8 border-t border-gray-800 relative z-20">
+        <!-- ... (footer content unchanged) -->
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12 border-b border-gray-800 pb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="block w-32 mb-6 opacity-90 hover:opacity-100 transition">
+                        <img src="https://i.ibb.co/nsjzN7QX/ltclogo.png" alt="LT.Combate" class="w-full h-auto filter brightness-0 invert">
+                    </a>
+                    <p class="text-gray-500 text-sm">Protegendo vidas e patrimônios com excelência técnica e agilidade.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Navegação</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-brand-fireRed transition">Início</a></li>
+                        <li><a href="#incendio" class="hover:text-brand-fireRed transition">Incêndio</a></li>
+                        <li><a href="#pragas" class="hover:text-brand-fireRed transition">Pragas</a></li>
+                        <li><a href="#faq" class="hover:text-brand-fireRed transition">Dúvidas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Siga-nos</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/LTserviceextintores" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/5511989410486" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-green-600 transition-all"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center md:text-left flex flex-col md:flex-row justify-between items-center text-gray-600 text-xs">
+                <p>&copy; 2025 LT.Combate. Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Updated scrollContainer with basic scroll behavior to avoid glitchy loops
+        function scrollContainer(containerId, amount) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            // Removed automatic loop logic to prevent user confusion and visual glitches
+            container.scrollBy({ left: amount, behavior: 'smooth' });
+        }
+
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.counter-value');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const speed = 200; 
+                const increment = target / speed;
+
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        const statsSection = document.querySelector('#stats-container');
+        if(statsSection) {
+            new IntersectionObserver((entries, observer) => {
+                if(entries[0].isIntersecting) {
+                    animateCounters();
+                    observer.disconnect();
+                }
+            }, {threshold:0.5}).observe(statsSection);
+        }
+
+        const btnMobile = document.getElementById('mobile-menu-btn');
+        const closeBtnMobile = document.getElementById('close-menu-btn');
+        const menuOverlay = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+
+        function toggleMenu() {
+            const isClosed = menuOverlay.classList.contains('translate-x-full');
+            if (isClosed) {
+                menuOverlay.classList.remove('translate-x-full');
+            } else {
+                menuOverlay.classList.add('translate-x-full');
+            }
+        }
+
+        btnMobile.addEventListener('click', toggleMenu);
+        closeBtnMobile.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('py-4', 'py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('py-2', 'py-4');
+            }
+        });
+    </script>
+</body>
+</html>
