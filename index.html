@@ -291,6 +291,8 @@
         <div class="container mx-auto px-6 flex justify-between items-center relative">
             <a href="#" class="flex items-center gap-2 group relative z-50">
                 <img src="https://i.ibb.co/nsjzN7QX/ltclogo.png" alt="LT.Combate" class="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-sm">
+                <div class="hidden lg:block h-8 w-px bg-gray-300"></div>
+                <span class="hidden lg:block text-sm font-bold text-gray-500 uppercase tracking-widest leading-none">Sua empresa <br><span class="text-brand-fireRed">funcionando</span></span>
             </a>
 
             <div class="hidden md:flex items-center space-x-8 font-bold text-sm tracking-wide text-brand-black">
@@ -345,7 +347,7 @@
             <div class="space-y-8 fade-in-up max-w-2xl bg-black/60 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-white/20">
                 <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-fireRed border border-red-500 text-white text-xs font-bold tracking-wider uppercase shadow-lg">
                     <span class="w-2.5 h-2.5 rounded-full bg-white badge-pulse"></span>
-                    Atendimento em Toda SP e Grande SP
+                    Sua empresa funcionando com segurança
                 </div>
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-black leading-[1.1] text-white tracking-tight drop-shadow-lg">
                     PROTEÇÃO <br>
@@ -753,6 +755,15 @@
                 <h3 class="text-4xl md:text-5xl font-display font-black text-brand-black">DÚVIDAS <span class="text-gray-400">COMUNS</span></h3>
             </div>
             <div class="max-w-3xl mx-auto space-y-4">
+                <details class="group bg-gray-50 rounded-2xl p-2 cursor-pointer fade-in-up">
+                    <summary class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm group-hover:shadow-md transition-all border border-gray-100">
+                        <h4 class="font-bold text-brand-black">Quanto tempo vale o AVCB?</h4>
+                        <span class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 group-open:bg-brand-fireRed group-open:text-white transition-colors"><i class="fas fa-chevron-down group-open:rotate-180 transition-transform"></i></span>
+                    </summary>
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        A validade varia de 1 a 5 anos, dependendo da ocupação e risco do imóvel. Edificações residenciais costumam ter prazos maiores que comércios e indústrias.
+                    </div>
+                </details>
                 <details class="group bg-gray-50 rounded-2xl p-2 cursor-pointer fade-in-up delay-75">
                     <summary class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm group-hover:shadow-md transition-all border border-gray-100">
                         <h4 class="font-bold text-brand-black">A dedetização tem cheiro?</h4>
@@ -815,7 +826,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-12 pt-8 border-t border-gray-100">
+                        <div class="mt-12 pt-8 border-t border-gray-100 hidden md:block">
                             <a href="https://wa.me/5511989410486" target="_blank" class="w-full py-4 bg-brand-whatsapp hover:bg-green-600 text-white font-bold rounded-xl flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-green-200 transform hover:-translate-y-1">
                                 <i class="fab fa-whatsapp text-2xl"></i><span>INICIAR CONVERSA AGORA</span>
                             </a>
@@ -832,54 +843,129 @@
         </div>
     </section>
 
-    <footer class="bg-brand-black text-white pt-16 pb-8 border-t border-gray-800 relative z-20">
+    <section class="py-24 relative overflow-hidden bg-white">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(226,51,56,0.05),_transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-dot-pattern opacity-[0.03]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24">
+                
+                <div class="w-40 h-40 md:w-80 md:h-80 relative flex-shrink-0 animate-float lg:order-1 order-1 opacity-90">
+                    <div class="absolute inset-0 bg-brand-fireRed/10 rounded-full blur-[50px] animate-pulse"></div>
+                    <img src="https://i.ibb.co/YB7PTmGc/ltcsymbol.png" alt="Selo de Garantia LT Combate" class="w-full h-full object-contain relative z-10 drop-shadow-lg transition-transform hover:scale-105 duration-500">
+                </div>
+
+                <div class="text-center lg:text-left max-w-2xl lg:order-2 order-2">
+                    <div class="inline-block px-4 py-1 rounded-full border border-brand-fireRed/30 bg-red-50 text-brand-fireRed text-xs font-bold tracking-widest uppercase mb-4">
+                        Compromisso LT.Combate
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-display font-black text-brand-black mb-6 leading-tight">
+                        GARANTIA DE <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-fireRed to-red-600">QUALIDADE TOTAL</span>
+                        <i class="fas fa-check-circle text-brand-fireRed ml-2 text-4xl align-middle shadow-sm rounded-full bg-white"></i>
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-10 leading-relaxed">
+                        Nosso selo não é apenas uma imagem, é um contrato de confiança. A LT.Combate assegura a eficácia de cada serviço com suporte técnico contínuo e responsabilidade legal.
+                    </p>
+                    
+                    <div class="grid sm:grid-cols-2 gap-x-8 gap-y-6 text-left">
+                        <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-brand-fireRed shrink-0">
+                                <i class="fas fa-tools text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-black text-base">Assistência Técnica</h4>
+                                <p class="text-xs text-gray-500 mt-1">Suporte pós-venda dedicado para dúvidas e manutenção preventiva.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-brand-fireRed shrink-0">
+                                <i class="fas fa-file-signature text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-black text-base">Certificação Válida</h4>
+                                <p class="text-xs text-gray-500 mt-1">Documentação técnica (ART/Laudos) aceita por todos os órgãos fiscalizadores.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-brand-fireRed shrink-0">
+                                <i class="fas fa-undo text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-black text-base">Retorno Garantido</h4>
+                                <p class="text-xs text-gray-500 mt-1">Em caso de reincidência de pragas no período de cobertura, retornamos sem custo.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
+                            <div class="mt-1 w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-brand-fireRed shrink-0">
+                                <i class="fas fa-check-double text-sm"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-black text-base">Normas ABNT/ANVISA</h4>
+                                <p class="text-xs text-gray-500 mt-1">Apenas equipamentos e químicos de linha profissional devidamente registrados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-black text-white pt-20 pb-10 border-t border-gray-800 relative z-20">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
+            <div class="grid md:grid-cols-4 gap-12 mb-16 pb-12 border-b border-gray-800">
                 <div class="col-span-1 md:col-span-1">
-                    <a href="#" class="block w-40 mb-6 opacity-90 hover:opacity-100 transition">
+                    <a href="#" class="block w-48 mb-6 opacity-90 hover:opacity-100 transition">
                         <img src="https://i.ibb.co/nsjzN7QX/ltclogo.png" alt="LT.Combate" class="w-full h-auto filter brightness-0 invert">
                     </a>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Referência em engenharia de segurança e controle de pragas. Protegendo seu patrimônio com excelência e tecnologia de ponta.
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Líder em engenharia de segurança e controle de pragas. Tecnologia, certificação e compromisso com a vida e seu patrimônio.
                     </p>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-6 text-lg tracking-wider border-l-4 border-brand-fireRed pl-3">Navegação</h4>
-                    <ul class="space-y-3 text-base text-gray-400">
-                        <li><a href="#home" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Início</a></li>
-                        <li><a href="#sobre" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> A Empresa</a></li>
-                        <li><a href="#incendio" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Incêndio</a></li>
-                        <li><a href="#pragas" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Pragas</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-6 text-lg tracking-wider border-l-4 border-brand-fireRed pl-3">Serviços</h4>
-                    <ul class="space-y-3 text-base text-gray-400">
-                        <li><a href="#incendio" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-file-contract text-xs"></i> AVCB e CLCB</a></li>
-                        <li><a href="#incendio" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-fire-extinguisher text-xs"></i> Equipamentos</a></li>
-                        <li><a href="#pragas" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-bug text-xs"></i> Dedetização</a></li>
-                        <li><a href="#pragas" class="hover:text-brand-fireRed transition flex items-center gap-2"><i class="fas fa-tint text-xs"></i> Limpeza de Caixa</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-bold mb-6 text-lg tracking-wider border-l-4 border-brand-fireRed pl-3">Contato</h4>
-                    <div class="flex gap-4 mb-6">
+                    <div class="flex gap-4">
                         <a href="https://www.facebook.com/LTserviceextintores" target="_blank" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-all text-xl"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://wa.me/5511989410486" class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-green-600 transition-all text-xl"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                    <a href="mailto:contato@ltcombate.com.br" class="text-gray-400 hover:text-white transition block mb-2"><i class="fas fa-envelope mr-2"></i> contato@ltcombate.com.br</a>
-                    <a href="tel:+5511989410486" class="text-gray-400 hover:text-white transition block"><i class="fas fa-phone mr-2"></i> (11) 98941-0486</a>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg border-l-4 border-brand-fireRed pl-3">Navegação</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#home" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-fireRed"></i> Início</a></li>
+                        <li><a href="#sobre" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-fireRed"></i> A Empresa</a></li>
+                        <li><a href="#incendio" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-fireRed"></i> Incêndio</a></li>
+                        <li><a href="#pragas" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-brand-fireRed"></i> Pragas</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg border-l-4 border-brand-fireRed pl-3">Serviços</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#incendio" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-file-contract text-xs text-brand-fireRed"></i> AVCB e CLCB</a></li>
+                        <li><a href="#incendio" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-fire-extinguisher text-xs text-brand-fireRed"></i> Equipamentos</a></li>
+                        <li><a href="#pragas" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-bug text-xs text-brand-fireRed"></i> Dedetização</a></li>
+                        <li><a href="#pragas" class="hover:text-white hover:pl-2 transition-all flex items-center gap-2"><i class="fas fa-tint text-xs text-brand-fireRed"></i> Limpeza de Caixa</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-lg border-l-4 border-brand-fireRed pl-3">Contato Rápido</h4>
+                    <div class="space-y-4 text-sm text-gray-400">
+                        <p class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-brand-fireRed mt-1"></i> Rua João de Deus, 455 - Osasco/SP</p>
+                        <a href="tel:+5511989410486" class="flex items-center gap-3 hover:text-white transition"><i class="fas fa-phone text-brand-fireRed"></i> (11) 98941-0486</a>
+                        <a href="mailto:contato@ltcombate.com.br" class="flex items-center gap-3 hover:text-white transition"><i class="fas fa-envelope text-brand-fireRed"></i> contato@ltcombate.com.br</a>
+                    </div>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 LT.Combate. Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
-                <div class="flex gap-6 text-xs text-gray-600">
-                    <a href="#" class="hover:text-gray-400 transition">Termos</a>
-                    <a href="#" class="hover:text-gray-400 transition">Privacidade</a>
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
+                <p>&copy; 2025 LT.Combate. Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition">Termos de Uso</a>
+                    <span class="text-gray-700">|</span>
+                    <a href="#" class="hover:text-white transition">Política de Privacidade</a>
                 </div>
             </div>
         </div>
